@@ -8,9 +8,6 @@ export default function Home() {
         <h1 className="text-3xl font-bold text-gray-900 mb-3">
           E-Commerce Application
         </h1>
-
-        <p className="text-gray-600 mb-6">Sign in</p>
-
         <SignInButton>
           <button className="w-full rounded-lg bg-black text-white py-3 font-medium hover:bg-gray-800 transition">
             Sign in
