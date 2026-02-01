@@ -10,7 +10,7 @@ export default function SearchBar() {
   }
 
   return (
-    <div className=" w-full  max-w-lg">
+   
     <form
       action={searchAction}
       className="flex w-full focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500"
@@ -28,6 +28,6 @@ export default function SearchBar() {
         <MdSearch/>
       </button>
     </form>
-    </div>
+   
   );
 }

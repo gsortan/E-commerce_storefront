@@ -5,28 +5,29 @@ import Image from "next/image";
 import shopBanner from "../../public/ShopLocal.png";
 import SearchBar from "./SearchBar";
 
-
 export default async function NavBar({ user }) {
-
   return (
     <>
-      <div className="p-2 h-20 gap-3 flex justify-between  items-center bg-[#232f3e] shadow-md ">
-        <Link href="/shop" className="h-full shrink-0">
+      <div className="p-2 grid grid-cols-[auto_1fr_auto]  items-center bg-[#232f3e] shadow-md ">
+        <Link href="/shop" className="h-20">
           <Image
             src={shopBanner}
             alt="shop local"
-            width={160}
-            height={60}
             className="h-full w-auto object-contain"
             priority
           />
         </Link>
 
-      <SearchBar/>
+        <div className=" p-4 hidden sm:block">
+          <SearchBar />
+        </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 col-start-3 row-start-1">
           <CartButton />
           <Profile user={user} />
+        </div>
+        <div className=" col-span-3 row-start-2 sm:col-start-2 sm:col-span-1 sm:row-start-1 pt-2 sm:hidden">
+          <SearchBar />
         </div>
       </div>
     </>
