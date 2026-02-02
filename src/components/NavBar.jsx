@@ -8,7 +8,7 @@ import SearchBar from "./SearchBar";
 export default async function NavBar({ user }) {
   return (
     <>
-      <div className="p-2 grid grid-cols-[auto_1fr_auto]  items-center bg-[#232f3e] shadow-md ">
+      <div className="p-2 grid grid-cols-[auto_1fr_auto]  items-center bg-[#232f3e] shadow-md  sticky top-0 z-30">
         <Link href="/shop" className="h-20">
           <Image
             src={shopBanner}
