@@ -18,14 +18,14 @@ https://e-commercestorefrontprod.vercel.app
 - Mobile-first responsive design
 
 ## Tech Stack
-- Next.js (App Router)
-- React
+- Next.js
 - JavaScript
 - Tailwind CSS
 - Prisma ORM
 - PostgreSQL
 - Stripe Checkout
 - Clerk Authentication
+- HeroUI
 
 ## 🛠️ Getting Started
 Create an account through Clerk authentication and then you can access the store to purchase items. A Stripe test card number you can use for the checkout is: 4242 4242 4242 4242
