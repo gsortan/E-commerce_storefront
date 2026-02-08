@@ -3,7 +3,6 @@
 import { prisma } from "../../lib/prisma.js";
 
 export async function createOrder(order) {
-  
   await prisma.order.upsert({
     where: { stripeSessionId: order.sessionId },
     update: {},
@@ -18,15 +17,26 @@ export async function createOrder(order) {
       shipCity: order.shipCity,
       shipRegion: order.shipRegion,
       shipPostalCode: order.shipPostalCode,
-      shipCountry: order.shipCountry
+      shipCountry: order.shipCountry,
     },
   });
 }
 
-export async function getOrders(skipVal, takeVal,uid) {
-  const [orders, totalCount] = await prisma.$transaction([
+export async function getLowestOrderYear() {
+  const lowestYearOrder = await prisma.order.findFirst({
+    orderBy: {
+      createdAt: "asc",
+    },
+  });
+
+  return lowestYearOrder.createdAt.getFullYear();
+}
+
+export async function getRevenueToday()
+{
+const [orders, totalCount] = await prisma.$transaction([
     prisma.order.findMany({
-      where: {userId:uid},
+      where: { userId: uid, createdAt: createdAtFilter },
       orderBy: { createdAt: "desc" },
       skip: skipVal,
       take: takeVal,
@@ -36,6 +46,34 @@ export async function getOrders(skipVal, takeVal,uid) {
     }),
     prisma.order.count(),
   ]);
+}
+
+export async function getOrders(skipVal, takeVal, uid, dateStart, dateEnd) {
+  const sDate = dateStart != null ? new Date(dateStart) : undefined;
+  const eDate = dateEnd != null ? new Date(dateEnd) : undefined;
+
+  const createdAtFilter =
+    sDate && eDate ? { gte: sDate, lte: eDate } : undefined;
+
+  const [orders, totalCount] = await prisma.$transaction([
+    prisma.order.findMany({
+      where: { userId: uid, createdAt: createdAtFilter },
+      orderBy: { createdAt: "desc" },
+      skip: skipVal,
+      take: takeVal,
+      include: {
+        items: { include: { product: true } },
+      },
+    }),
+   prisma.order.count({
+    where: {
+      userId: uid,
+      createdAt: createdAtFilter,
+    },
+      }),
+  ]);
+
+  console.log(orders[1].createdAt.getFullYear());
 
   return {
     orders: orders.map((o) => ({
