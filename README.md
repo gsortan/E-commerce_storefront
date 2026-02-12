@@ -6,7 +6,7 @@ A full-stack e-commerice storefront web application built with Next.js and Javas
 https://e-commercestorefrontprod.vercel.app
 
 
-## Features
+## 👥 Customer Features
 - Product listing with assorted items from fakestoreapi.com
 - Dynamic product detail pages
 - Search functionality
