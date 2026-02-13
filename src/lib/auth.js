@@ -1,22 +1,31 @@
 import { auth, clerkClient } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 export async function requireUserId() {
   const { userId } = await auth();
+
   if (!userId) {
-    throw new Error("UNAUTHENTICATED");
+    redirect("/unauthorized"); 
   }
+
   return userId;
 }
 
 export async function requireAdmin() {
   const { userId } = await auth();
-  if (!userId) throw new Error("UNAUTHENTICATED");
+
+  if (!userId) {
+    redirect("/unauthorized");
+  }
 
   const client = await clerkClient();
   const user = await client.users.getUser(userId);
 
   const role = user.publicMetadata?.role;
-  if (role !== "admin") throw new Error("FORBIDDEN");
+
+  if (role !== "admin") {
+    redirect("/forbidden");
+  }
 
   return userId;
 }
