@@ -9,7 +9,7 @@ https://e-commercestorefrontprod.vercel.app
 ## 👥 Customer Features
 - Product listing with assorted items from fakestoreapi.com
 - Dynamic product detail pages
-- Search functionality
+- Search functionality with auto-complete
 - Shopping cart with quantity controls
 - User authentication with Clerk
 - Secure checkout using Stripe
@@ -42,9 +42,14 @@ Order management:
 - Stripe Checkout
 - Clerk Authentication
 - HeroUI
+- Headless UI
 
 ## 🛠️ Getting Started
 Create an account through Clerk authentication sign-up and then you can access the store to purchase items. A Stripe test card number you can use for the checkout is: 4242 4242 4242 4242
+
+Demo customer account:
+Username: Basketball_Jan
+Password: *pSpYzu26!B-.qz
 
 ## Installation
 
